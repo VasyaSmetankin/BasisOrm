@@ -1,7 +1,4 @@
-package core;
-
-
-import lombok.*;
+package core.entity;
 
 
 public class User {
