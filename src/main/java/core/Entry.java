@@ -1,16 +1,14 @@
 package core;
 
-import core.queryBuilder.ManualQueryBuilder;
+import core.querybuilder.ManualQueryBuilder;
 
 public class Entry {
 
     public static void main(String[] args) {
+
         ManualQueryBuilder builder = new ManualQueryBuilder();
-        String query = builder
-                .select(new String[]{"name", "age"})
-                .from(new String[]{"users"})
-                .assembly();
-        System.out.println(query);
+        builder.from("2").select("1").where("3");
+        builder.assembly();
     }
 }
 
