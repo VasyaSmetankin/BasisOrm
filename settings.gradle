@@ -1,0 +1,4 @@
+rootProject.name = 'BasisORM'
+include 'Core'
+include 'core'
+
