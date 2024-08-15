@@ -1,22 +1,17 @@
 package core.querybuilder;
 
-
 import core.statements.From;
 import core.statements.Select;
 import core.statements.Statement;
 import core.statements.Where;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+
+
 @SuppressWarnings("checkstyle:Indentation")
-@Getter
-@Setter
 public class ManualQueryBuilder {
-    private List<Statement> query = new ArrayList<>();
+    private final List<Statement> query = new ArrayList<>();
 
     public ManualQueryBuilder select(String value) {
         Select select = new Select(value);

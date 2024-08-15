@@ -1,14 +1,18 @@
 package core;
 
+import core.annotations.AnnotationAnalyzer;
+import core.entity.User;
 import core.querybuilder.ManualQueryBuilder;
+import core.querybuilder.QueryBuilder;
 
 public class Entry {
 
     public static void main(String[] args) {
+        User user = new User();
 
-        ManualQueryBuilder builder = new ManualQueryBuilder();
-        builder.select("").where("");
-        builder.assembly();
+        AnnotationAnalyzer analyzer = new AnnotationAnalyzer(user);
+        analyzer.getTableInfo();
+        analyzer.getFieldsInfo();
     }
 }
 
