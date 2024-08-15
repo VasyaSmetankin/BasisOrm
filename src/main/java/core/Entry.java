@@ -7,7 +7,7 @@ public class Entry {
     public static void main(String[] args) {
 
         ManualQueryBuilder builder = new ManualQueryBuilder();
-        builder.from("2").select("1").where("3");
+        builder.select("").where("");
         builder.assembly();
     }
 }

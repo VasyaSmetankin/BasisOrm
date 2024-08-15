@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("checkstyle:Indentation")
 @Getter
 @Setter
 public class ManualQueryBuilder {
@@ -38,9 +39,15 @@ public class ManualQueryBuilder {
         return this;
     }
 
-    public String assembly() {
+    private void sort() {
         query.sort((s1, s2) -> Integer.compare(s1.getPriority(), s2.getPriority()));
         query.forEach(item -> System.out.println(item.getStatement() + " " + item.getValue() + " "));
+    }
+
+    public String assembly() {
+        QueryValidator.instance.validate(query);
+        sort();
+        StringBuilder result = new StringBuilder();
         return "";
     }
 }
