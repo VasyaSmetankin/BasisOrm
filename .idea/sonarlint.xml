@@ -3,7 +3,7 @@
   <component name="SonarLintProjectSettings">
     <option name="moduleMapping">
       <map>
-        <entry key="BasisORM.core" value="BasisORM.core" />
+        <entry key="BasisORM.Core" value="BasisORM.core" />
       </map>
     </option>
   </component>
