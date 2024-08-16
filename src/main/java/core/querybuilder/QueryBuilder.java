@@ -8,6 +8,7 @@ public class QueryBuilder {
 
     public void Add(Object obj) {
 
+
     }
 
     public void Remove() {

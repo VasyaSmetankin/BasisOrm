@@ -1,4 +1,4 @@
-package core;
+package core.connection;
 
 
 import java.sql.Connection;
