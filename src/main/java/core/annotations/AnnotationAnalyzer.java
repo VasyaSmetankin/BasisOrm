@@ -29,15 +29,24 @@ public class AnnotationAnalyzer {
     public HashMap<String, String> getFieldsInfo() {
         HashMap<String, String> fieldsInfo = new HashMap<>();
         Arrays.stream(object.getClass().getDeclaredFields()).forEach(field -> {
-            if (field.isAnnotationPresent(Field.class)) {
-                Field fieldAnnotation = field.getAnnotation(Field.class);
-                fieldsInfo.put(field.getName(), fieldAnnotation.name());
-                System.out.println("field name by annotation: " + fieldAnnotation.name());
-            } else {
-                fieldsInfo.put(field.getName(), field.getName());
-                System.out.println("field name: " + field.getName());
+            try {
+                field.setAccessible(true);
+
+                String fieldName = field.isAnnotationPresent(Field.class) ?
+                        field.getAnnotation(Field.class).name() :
+                        field.getName();
+
+                Object fieldValue = field.get(object);
+                fieldsInfo.put(fieldName, fieldValue != null ? fieldValue.toString() : "null");
+
+                System.out.println("Field name: " + fieldName + ", value: " + fieldValue);
+
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         });
+
         return fieldsInfo;
     }
 }
+
