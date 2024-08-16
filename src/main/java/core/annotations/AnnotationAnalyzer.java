@@ -28,19 +28,31 @@ public class AnnotationAnalyzer {
 
     public HashMap<String, String> getFieldsInfo() {
         HashMap<String, String> fieldsInfo = new HashMap<>();
+
         Arrays.stream(object.getClass().getDeclaredFields()).forEach(field -> {
             try {
                 field.setAccessible(true);
 
+                // Проверка на наличие аннотации PrimaryKey и свойства autoIncrement
+                if (field.isAnnotationPresent(PrimaryKey.class)) {
+                    PrimaryKey primaryKey = field.getAnnotation(PrimaryKey.class);
+                    if (primaryKey.autoIncrement()) {
+                        System.out.println("Skipping auto-increment field: " + field.getName());
+                        // Пропустить это поле, так как оно автоинкрементное
+                        return;
+                    }
+                }
+
+                // Получаем имя поля из аннотации @Field или используем имя самого поля
                 String fieldName = field.isAnnotationPresent(Field.class) ?
                         field.getAnnotation(Field.class).name() :
                         field.getName();
 
+                // Получаем значение поля
                 Object fieldValue = field.get(object);
                 fieldsInfo.put(fieldName, fieldValue != null ? fieldValue.toString() : "null");
 
                 System.out.println("Field name: " + fieldName + ", value: " + fieldValue);
-
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
