@@ -1,22 +1,30 @@
 package core.entity;
 
 
-import core.annotations.Field;
+import core.annotations.Column;
 import core.annotations.PrimaryKey;
 import core.annotations.Table;
+
+import java.util.Optional;
 
 @Table(tableName = "user", schema = "test")
 public class User {
     @PrimaryKey(autoIncrement = true)
-    int id;
+    Optional<Integer> id;
 
-    @Field(name = "user_name", type = "VARCHAR")
+    @Column(name = "user_name", type = "VARCHAR")
     String username;
     int age;
 
-    public User() {
-        this.id = 1;
+    public User(int id, String username, int age) {
+        this.id = id == 0 ? null : Optional.of(id);
         this.username = "John";
         this.age = 30;
+    }
+
+    public User(String username, int age) {
+        this.id = null;
+        this.username = username;
+        this.age = age;
     }
 }
