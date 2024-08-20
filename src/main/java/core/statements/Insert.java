@@ -5,8 +5,8 @@ public class Insert implements Statement {
     private String STATEMENT = "INSERT";
     private String value;
 
-    public Insert(String value) {
-        this.value = value;
+    public Insert() {
+        this.value = "";
     }
 
     @Override
@@ -26,6 +26,5 @@ public class Insert implements Statement {
 
     @Override
     public void setValue(String value) {
-
     }
 }

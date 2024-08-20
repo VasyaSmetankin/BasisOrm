@@ -11,7 +11,6 @@ public class Select implements Statement {
 
     @Override
     public int getPriority() {
-
         return PRIORITY;
     }
 
