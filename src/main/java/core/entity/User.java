@@ -18,8 +18,8 @@ public class User {
 
     public User(int id, String username, int age) {
         this.id = id == 0 ? null : Optional.of(id);
-        this.username = "John";
-        this.age = 30;
+        this.username = username;
+        this.age = age;
     }
 
     public User(String username, int age) {

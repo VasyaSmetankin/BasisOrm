@@ -56,6 +56,25 @@ public class ManualQueryBuilder {
         return this;
     }
 
+    public ManualQueryBuilder delete() {
+        Delete delete = new Delete();
+        query.add(delete);
+        return this;
+    }
+
+    public ManualQueryBuilder update(String value) {
+        Update update = new Update(value);
+        query.add(update);
+        return this;
+    }
+
+    public ManualQueryBuilder set(String value) {
+        Set set = new Set(value);
+        query.add(set);
+        return this;
+    }
+
+
     private void sort() {
         query.sort((s1, s2) -> Integer.compare(s1.getPriority(), s2.getPriority()));
     }

@@ -1,12 +1,8 @@
 package core.querybuilder;
 
 import core.annotations.AnnotationAnalyzer;
-import core.connection.Session;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
-import java.util.SplittableRandom;
 
 public class QueryBuilder {
     private List<String> query;
@@ -16,7 +12,7 @@ public class QueryBuilder {
     public QueryBuilder() {
     }
 
-    public String Add(Object object) {
+    public String create(Object object) {
         String table = annotationAnalyzer.getTableInfo(object);
         String columns = annotationAnalyzer.getColumns(object);
         String values = annotationAnalyzer.getColumnValues(object);
@@ -24,15 +20,31 @@ public class QueryBuilder {
         return result;
     }
 
-    public void Remove() {
-
+    public String delete(Object object) {
+        String table = annotationAnalyzer.getTableInfo(object);
+        String columns = annotationAnalyzer.getColumns(object);
+        String values = annotationAnalyzer.getColumnValues(object);
+        String result = manualQueryBuilder.delete().from(table).where(columns + " = " + values).assembly();
+        return result;
     }
 
-    public void Update() {
+    public String update(Object object) {
+        String table = annotationAnalyzer.getTableInfo(object);
+        String columns = annotationAnalyzer.getColumns(object);
+        String values = annotationAnalyzer.getColumnValues(object);
+        Object id = annotationAnalyzer.getPrimaryKeyValue(object);
+        String result = manualQueryBuilder.update(table).set(columns + " = " + values).where("id = " + id).assembly();
+        System.out.println(result);
 
+        return result;
     }
 
-    public void Select() {
+    public String read(Object object) {
 
+        return "";
+    }
+
+    public void clearQuery() {
+        query.clear();
     }
 }
