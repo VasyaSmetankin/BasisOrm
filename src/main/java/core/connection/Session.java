@@ -29,6 +29,19 @@ public class Session {
         }
     }
 
+    public void add(Object object) {
+        startConnection(1);
+        String query = queryBuilder.Add(object);
+        try {
+            connection.createStatement().execute(query);
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Transaction error: " + e.getMessage(), e);
+        }
+    }
+
+
     public void commit() throws SQLException {
         try {
             connection.commit();

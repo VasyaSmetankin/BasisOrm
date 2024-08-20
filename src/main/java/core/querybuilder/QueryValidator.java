@@ -27,7 +27,7 @@ public class QueryValidator {
     private boolean hasMissingPriority(List<Statement> query) {
         query.sort((s1, s2) -> Integer.compare(s1.getPriority(), s2.getPriority()));
         for (int i = 0; i < query.size(); i++) {
-            if (query.get(i).getPriority() != i) {
+            if (query.get(i).getPriority() != i + 1) {
                 return true;
             }
         }

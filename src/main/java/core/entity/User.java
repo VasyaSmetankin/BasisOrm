@@ -12,7 +12,7 @@ public class User {
     @PrimaryKey(autoIncrement = true)
     Optional<Integer> id;
 
-    @Column(name = "user_name", type = "VARCHAR")
+    @Column(name = "name", type = "VARCHAR")
     String username;
     int age;
 
