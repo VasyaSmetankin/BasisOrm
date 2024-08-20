@@ -29,9 +29,45 @@ public class Session {
         }
     }
 
-    public void add(Object object) {
+    public void create(Object object) {
         startConnection(1);
-        String query = queryBuilder.Add(object);
+        String query = queryBuilder.create(object);
+        try {
+            connection.createStatement().execute(query);
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Transaction error: " + e.getMessage(), e);
+        }
+    }
+
+    public void update(Object object) {
+        startConnection(1);
+        String query = queryBuilder.update(object);
+        try {
+            connection.createStatement().execute(query);
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Transaction error: " + e.getMessage(), e);
+        }
+    }
+
+    public void delete(Object object) {
+        startConnection(1);
+        String query = queryBuilder.delete(object);
+        try {
+            connection.createStatement().execute(query);
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Transaction error: " + e.getMessage(), e);
+        }
+    }
+
+    public void read(Object object) {
+        startConnection(1);
+        String query = queryBuilder.read(object);
         try {
             connection.createStatement().execute(query);
             connection.commit();

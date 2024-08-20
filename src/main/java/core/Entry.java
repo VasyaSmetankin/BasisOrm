@@ -8,9 +8,15 @@ import core.querybuilder.QueryBuilder;
 public class Entry {
 
     public static void main(String[] args) {
-        User user = new User("PIZDA", 1488);
+        User user = new User("John1", 30);
         Session session = new Session();
-        session.add(user);
+        User user2 = new User(31,"John2", 33232);
+        session.delete(user2);
+
+
+
+
+
     }
 }
 
